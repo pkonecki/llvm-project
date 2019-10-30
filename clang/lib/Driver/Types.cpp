@@ -279,6 +279,7 @@ types::ID types::lookupTypeForExtension(llvm::StringRef Ext) {
            .Case("hip", TY_HIP)
            .Case("hpp", TY_CXXHeader)
            .Case("hxx", TY_CXXHeader)
+           .Case("inl", TY_CHeader)
            .Case("iim", TY_PP_CXXModule)
            .Case("lib", TY_Object)
            .Case("mii", TY_PP_ObjCXX)
