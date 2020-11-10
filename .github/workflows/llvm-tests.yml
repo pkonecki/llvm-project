@@ -45,7 +45,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: binaries-${{ matrix.name }}
-        path: bin/
+        path: build/bin/
 
   abi-dump:
     runs-on: ubuntu-latest
