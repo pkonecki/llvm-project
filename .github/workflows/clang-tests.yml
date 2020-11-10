@@ -41,3 +41,8 @@ jobs:
       with:
         cmake_args: -G Ninja  -DLLVM_ENABLE_PROJECTS="clang" -DCMAKE_BUILD_TYPE=Release
         build_target: check-clang
+    - name: Upload binaries
+      uses: actions/upload-artifact@v1
+      with:
+        name: binaries-${{ matrix.name }}
+        path: build/bin/
