@@ -16,6 +16,8 @@ on:
 
 jobs:
   build_clang:
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     name: clang check-all
     runs-on: ${{ matrix.os }}
     strategy:
