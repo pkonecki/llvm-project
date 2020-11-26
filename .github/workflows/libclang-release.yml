@@ -1,4 +1,4 @@
-name: Clang Tests
+name: Build libclang
 
 on:
   push:
