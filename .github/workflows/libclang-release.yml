@@ -7,18 +7,18 @@ on:
     paths:
       - 'clang/**'
       - 'llvm/**'
-      - '.github/workflows/clang-tests.yml'
+      - '.github/workflows/libclang-release.yml'
   pull_request:
     paths:
       - 'clang/**'
       - 'llvm/**'
-      - '.github/workflows/clang-tests.yml'
+      - '.github/workflows/libclang-release.yml'
 
 jobs:
   build_clang:
     env:
       ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-    name: clang check-all
+    name: libclang-release
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -38,8 +38,13 @@ jobs:
     - uses: actions/checkout@v1
       with:
         fetch-depth: 1
-    - name: Test clang
+    - name: Build libclang
       uses: llvm/actions/build-test-llvm-project@master
       with:
         cmake_args: -G Ninja  -DLLVM_ENABLE_PROJECTS="clang" -DCMAKE_BUILD_TYPE=Release
-        build_target: check-clang
+        build_target: libclang
+    - name: Upload binaries
+      uses: actions/upload-artifact@v1
+      with:
+        name: binaries
+        path: build/bin/
