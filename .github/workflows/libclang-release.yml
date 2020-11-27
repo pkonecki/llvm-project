@@ -46,5 +46,5 @@ jobs:
     - name: Upload binaries
       uses: actions/upload-artifact@v1
       with:
-        name: binaries
+        name: binaries-${{ matrix.os }}
         path: build/bin/
