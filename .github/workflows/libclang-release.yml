@@ -30,12 +30,15 @@ jobs:
         build-type:
           - Release
           - Debug
+        arch:
+          - amd64
+          - x86
     steps:
     - name: Setup Windows
       if: startsWith(matrix.os, 'windows')
       uses: llvm/actions/setup-windows@master
       with:
-        arch: amd64
+        arch: ${{ matrix.arch }}
     - name: Install Ninja
       uses: llvm/actions/install-ninja@master
     - uses: actions/checkout@v1
@@ -49,5 +52,5 @@ jobs:
     - name: Upload binaries
       uses: actions/upload-artifact@v1
       with:
-        name: binaries-${{ matrix.os }}-${{ matrix.build-type }}
+        name: binaries-${{ matrix.os }}-${{ matrix.build-type }}-${{ matrix.arch }}
         path: build/bin/
