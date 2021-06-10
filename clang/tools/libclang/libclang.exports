@@ -220,6 +220,7 @@ clang_getDiagnosticCategory
 clang_getDiagnosticCategoryName
 clang_getDiagnosticCategoryText
 clang_getDiagnosticFixIt
+clang_getDiagnosticId
 clang_getDiagnosticInSet
 clang_getDiagnosticLocation
 clang_getDiagnosticNumFixIts

@@ -3294,9 +3294,9 @@ bool CursorVisitor::RunVisitorWorkList(VisitorWorkList &WL) {
             if (Visit(MakeCXCursor(Proto.getParam(I), TU)))
               return true;
         }
-        if (E->hasExplicitResultType()) {
-          // Visit result type.
-          if (Visit(Proto.getReturnLoc()))
+        // Visit init captures
+        for (auto pInitExpr : E->capture_inits()) {
+          if (pInitExpr && Visit(pInitExpr))
             return true;
         }
       }
