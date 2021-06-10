@@ -391,6 +391,19 @@ CXString clang_getDiagnosticOption(CXDiagnostic Diag, CXString *Disable) {
   return cxstring::createEmpty();
 }
 
+
+#if 1 ///-- HOIBY WAS HERE
+unsigned clang_getDiagnosticId(CXDiagnostic Diagnostic) {
+  CXDiagnosticImpl &Diag = *(CXDiagnosticImpl *)Diagnostic;
+  if (CXStoredDiagnostic::classof(&Diag)) {
+    CXStoredDiagnostic &StoredDiag = *(CXStoredDiagnostic *)Diagnostic;
+    return StoredDiag.Diag.getID();
+  }
+  return 0;
+}
+#endif
+
+
 unsigned clang_getDiagnosticCategory(CXDiagnostic Diag) {
   if (CXDiagnosticImpl *D = static_cast<CXDiagnosticImpl *>(Diag))
     return D->getCategory();
