@@ -38,6 +38,11 @@ jobs:
       uses: llvm/actions/build-test-llvm-project@main
       with:
         cmake_args: -G Ninja -DCMAKE_BUILD_TYPE=Release
+    - name: Upload binaries
+      uses: actions/upload-artifact@v1
+      with:
+        name: binaries-${{ matrix.name }}
+        path: build/bin/
 
   abi-dump-setup:
     runs-on: ubuntu-latest
